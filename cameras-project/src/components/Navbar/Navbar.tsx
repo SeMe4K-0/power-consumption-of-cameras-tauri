@@ -2,6 +2,7 @@ import { type FC } from 'react';
 import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES, ROUTE_LABELS } from '../../constants/routes';
+import logoImage from '../../assets/logo.png';
 import './Navbar.css';
 
 export const Navbar: FC = () => {
@@ -12,7 +13,7 @@ export const Navbar: FC = () => {
       <Container>
         <BootstrapNavbar.Brand as={Link} to={ROUTES.HOME} className="navbar-brand">
           <div className="logo-container">
-            <img src="/src/assets/logo.png" alt="logo" className="logo-image" />
+            <img src={logoImage} alt="logo" className="logo-image" />
           </div>
         </BootstrapNavbar.Brand>
         

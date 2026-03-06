@@ -19,3 +19,22 @@
 }
 
 .camera-card:hover .camera-title { color: #b40a05; }
+
+@media (max-width: 768px) {
+  .camera-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .camera-card .camera-image-wrapper {
+    height: 180px;
+  }
+
+  .camera-card .camera-image {
+    height: 180px;
+  }
+
+  .camera-actions {
+    justify-content: flex-start;
+  }
+}

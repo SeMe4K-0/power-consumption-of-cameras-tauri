@@ -1,7 +1,7 @@
-import { type FC } from 'react';
+import { type FC, useMemo } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import type { Camera } from '../../types';
-import defaultImage from '/src/assets/default_camera.png';
+import defaultImage from '../../assets/default_camera.png';
 import './CamerasCard.css';
 
 interface CamerasCardProps {
@@ -13,14 +13,22 @@ export const CamerasCard: FC<CamerasCardProps> = ({
   camera, 
   onViewDetails
 }) => {
+  const imageSrc = useMemo(() => {
+    return camera.image && camera.image.trim() ? camera.image : defaultImage;
+  }, [camera.image]);
+
   return (
     <Card className="camera-card">
       <div className="camera-image-wrapper">
         <Card.Img 
           variant="top" 
-          src={camera.image || defaultImage} 
+          src={imageSrc}
           alt={camera.name}
           className="camera-image"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = defaultImage;
+          }}
         />
       </div>
       <div className="camera-right">

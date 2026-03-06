@@ -8,6 +8,7 @@ import { ROUTES, ROUTE_LABELS } from '../../constants/routes';
 import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
 import { CamerasCard } from '../../components/CamerasCard/CamerasCard';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
+import camerascartIcon from '../../assets/camerascart_icon.png';
 import './CamerasPage.css';
 
 export const CamerasPage: FC = () => {
@@ -121,7 +122,7 @@ export const CamerasPage: FC = () => {
       </Container>
 
       <div className={`camerascart-icon-container ${camerascartInfo.draft_id === 0 && camerascartInfo.cameras_cnt === 0 ? 'disabled' : ''}`}>
-        <img src="/src/assets/camerascart_icon.png" alt="Camerascart" className="camerascart-icon" />
+        <img src={camerascartIcon} alt="Camerascart" className="camerascart-icon" />
         {camerascartInfo.cameras_cnt > 0 && (
           <span className="camerascart-count">{camerascartInfo.cameras_cnt}</span>
         )}
