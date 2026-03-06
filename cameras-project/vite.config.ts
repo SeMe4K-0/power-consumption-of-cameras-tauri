@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/power-consumption-of-cameras-tauri/',
   server: { 
     port: 3000,
     proxy: {
