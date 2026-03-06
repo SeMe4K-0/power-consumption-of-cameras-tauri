@@ -42,4 +42,3 @@ export const CamerasCard: FC<CamerasCardProps> = ({
     </Card>
   );
 };
-

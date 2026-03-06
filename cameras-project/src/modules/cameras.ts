@@ -56,4 +56,3 @@ export const getCamera = async (id: number): Promise<Camera> => {
     return cameraItem;
   }
 };
-

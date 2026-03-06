@@ -12,7 +12,7 @@ export const Navbar: FC = () => {
       <Container>
         <BootstrapNavbar.Brand as={Link} to={ROUTES.HOME} className="navbar-brand">
           <div className="logo-container">
-            <img src="/src/assets/logo.png" alt="Logo" className="logo-image" />
+            <img src="/src/assets/logo.png" alt="logo" className="logo-image" />
           </div>
         </BootstrapNavbar.Brand>
         

@@ -24,9 +24,9 @@ dist-ssr
 *.sw?
 
 # Certificates
-de-broglie-project/ca.crt
-de-broglie-project/ca.key
-de-broglie-project/cert.crt
-de-broglie-project/cert.key
+cameras-project/ca.crt
+cameras-project/ca.key
+cameras-project/cert.crt
+cameras-project/cert.key
 
-de-broglie-project/dev-dist
+cameras-project/dev-dist

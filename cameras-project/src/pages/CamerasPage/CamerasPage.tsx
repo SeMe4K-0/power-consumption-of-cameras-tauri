@@ -8,8 +8,6 @@ import { ROUTES, ROUTE_LABELS } from '../../constants/routes';
 import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
 import { CamerasCard } from '../../components/CamerasCard/CamerasCard';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectCameraQuery, setCameraQuery } from '../../store/filterSlice';
 import './CamerasPage.css';
 
 export const CamerasPage: FC = () => {
@@ -19,10 +17,10 @@ export const CamerasPage: FC = () => {
   const [camerascartInfo, setCamerascartInfo] = useState<CamerasCartInfo>({ draft_id: 0, cameras_cnt: 0 });
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useAppDispatch();
-  const storedCameraQuery = useAppSelector(selectCameraQuery);
-  const urlCameraQuery = (searchParams.get('camera') || '').trim();
-  const effectiveQuery = urlCameraQuery || storedCameraQuery;
+  
+  const [searchQuery, setSearchQuery] = useState<string>(() => {
+    return searchParams.get('camera') || '';
+  });
 
   useEffect(() => {
     const loadCameras = async (filters?: FilterParams) => {
@@ -49,34 +47,25 @@ export const CamerasPage: FC = () => {
       }
     };
 
-    if (!urlCameraQuery && storedCameraQuery) {
-      setSearchParams({ camera: storedCameraQuery }, { replace: true });
-      return;
-    }
-
-    if (urlCameraQuery !== storedCameraQuery) {
-      dispatch(setCameraQuery(urlCameraQuery));
-    }
-
-    if (effectiveQuery) {
-      loadCameras({ camera: effectiveQuery });
+    const cameraParam = searchParams.get('camera');
+    if (cameraParam) {
+      setSearchQuery(cameraParam);
+      loadCameras({ camera: cameraParam });
     } else {
+      setSearchQuery('');
       loadCameras();
     }
     
     loadCamerascartInfo();
-  }, [dispatch, effectiveQuery, setSearchParams, storedCameraQuery, urlCameraQuery]);
+  }, [searchParams]);
 
   const handleViewDetails = (id: number) => {
     navigate(`${ROUTES.CAMERAS}/${id}`);
   };
 
   const handleSearch = (query: string) => {
-    const trimmedQuery = query.trim();
-    dispatch(setCameraQuery(trimmedQuery));
-
-    if (trimmedQuery) {
-      setSearchParams({ camera: trimmedQuery });
+    if (query.trim()) {
+      setSearchParams({ camera: query.trim() });
     } else {
       setSearchParams({});
     }
@@ -91,7 +80,7 @@ export const CamerasPage: FC = () => {
       <SearchBar 
         onSearch={handleSearch}
         placeholder="Найти..."
-        initialValue={effectiveQuery}
+        initialValue={searchQuery}
       />
 
       <Container className="space">
@@ -141,4 +130,3 @@ export const CamerasPage: FC = () => {
     </div>
   );
 };
-

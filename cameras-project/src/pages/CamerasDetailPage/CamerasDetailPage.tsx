@@ -5,10 +5,11 @@ import type { Camera } from '../../types';
 import { getCamera } from '../../modules/cameras';
 import { ROUTES, ROUTE_LABELS } from '../../constants/routes';
 import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import defaultImage from '/src/assets/default_camera.png';
 import './CamerasDetailPage.css';
 
 export const CamerasDetailPage: FC = () => {
+  const showcaseVideoUrl =
+    'https://assets.mixkit.co/videos/48922/48922-720.mp4';
   const { id } = useParams<{ id: string }>();
   const [camera, setCamera] = useState<Camera | null>(null);
   const [loading, setLoading] = useState(true);
@@ -76,26 +77,32 @@ export const CamerasDetailPage: FC = () => {
       />
       
       <Container className="camera-detail-container">
-        <h1>{camera.name}</h1>
-        
-        <div className="camera-card">
-          <div className="camera-image-wrapper">
-            <img
-              src={camera.image || defaultImage}
-              alt={camera.name}
-              className="camera-image"
+        <article className="camera-detail-card">
+          <div className="camera-video-shell">
+            <video
+              className="camera-short-video"
+              src={showcaseVideoUrl}
+              poster={camera.image}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
             />
+            <div className="camera-video-overlay">
+              <h1 className="camera-title">{camera.name}</h1>
+            </div>
           </div>
+
           <div className="camera-info-wrapper">
             <p className="camera-detail-power"><strong>Мощность:</strong> {camera.power} Вт</p>
             {camera.description && (
               <p className="camera-detail-description"><strong>Описание:</strong> {camera.description}</p>
             )}
           </div>
-        </div>
+        </article>
       </Container>
       
     </div>
   );
 };
-

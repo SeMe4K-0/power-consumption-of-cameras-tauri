@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useState } from 'react';
 import './SearchBar.css';
 
 interface SearchBarProps {
@@ -13,10 +13,6 @@ export const SearchBar: FC<SearchBarProps> = ({
   initialValue = "" 
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>(initialValue);
-
-  useEffect(() => {
-    setSearchQuery(initialValue);
-  }, [initialValue]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

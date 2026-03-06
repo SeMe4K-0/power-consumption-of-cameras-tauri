@@ -1,95 +1,170 @@
 .home-page {
   min-height: 100vh;
-  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
+  background-color: #FFFFFF;
 }
 
 /* banner removed */
 
 .home-content {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 40px 0;
 }
 
 .welcome-card {
   border: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  overflow: hidden;
-  background: #fff;
-}
-
-.welcome-card .card-body {
-  padding: 40px;
 }
 
 .welcome-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
   text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 30px;
+}
+
+.welcome-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #000;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 .welcome-features {
-  background: #f8f9fa;
-  border-radius: 10px;
+  background-color: #f8f9fa;
   padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .carousel-content {
+  padding: 20px 60px;
   text-align: center;
-  padding: 20px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+/* Fade overlap handling: dim outgoing text, highlight incoming */
+.welcome-features .carousel {
+  position: relative;
+}
+.welcome-features .carousel-item .carousel-content {
+  opacity: 0;
+  filter: blur(0.6px);
+  transition: opacity 0.25s ease, filter 0.35s ease;
+}
+/* Новый слайд появляется чуть позже (после затемнения старого) */
+.welcome-features .carousel-item.active .carousel-content {
+  opacity: 1;
+  filter: none;
+  transition-delay: 0.001s;
+}
+/* Уходящий/приходящий слайды остаются невидимыми */
+.welcome-features .carousel-item.carousel-item-start .carousel-content,
+.welcome-features .carousel-item.carousel-item-end .carousel-content {
+  opacity: 0;
+  filter: blur(0.6px);
+  transition-delay: 0s;
 }
 
 .carousel-content h5 {
-  color: #b40a05;
-  font-weight: 600;
-  margin-bottom: 20px;
-  font-size: 1.3rem;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-.carousel-content ul,
-.carousel-content ol {
-  text-align: left;
-  display: inline-block;
+.carousel-content ul {
   margin: 0;
   padding-left: 20px;
+  text-align: left;
 }
 
 .carousel-content li {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  color: #555;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.carousel-content ol {
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.carousel-content p {
+  color: #000;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+  opacity: 0.8;
+}
+
+.carousel-control-prev {
+  left: -15px;
+}
+
+.carousel-control-next {
+  right: -15px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #b40a05;
   border-radius: 50%;
-  padding: 15px;
+  width: 35px;
+  height: 35px;
+  background-size: 20px 20px;
 }
 
-.carousel-indicators [data-bs-target] {
+.welcome-actions {
+  text-align: center;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 25px;
   background-color: #b40a05;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-decoration: none;
 }
 
 
 @media (max-width: 768px) {
-  .home-content { padding: 20px; width: 90%; }
-  .welcome-card .card-body { padding: 20px; }
-  .welcome-title { font-size: 1.5rem; }
-  .carousel-content { min-height: 250px; }
+  /* banner removed */
+  
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  
+  .welcome-text {
+    font-size: 1rem;
+  }
+  
+  .welcome-card {
+    padding: 20px;
+  }
 }

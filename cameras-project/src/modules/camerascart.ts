@@ -23,4 +23,3 @@ export const getCamerasCartInfo = async (): Promise<CamerasCartInfo> => {
     };
   }
 };
-
