@@ -1,0 +1,107 @@
+.cameras-page {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+}
+
+/* banner removed */
+
+.space {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+  padding: 20px 0;
+}
+
+/* Grid and card styles adapted to main.css semantics */
+.cameras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  justify-content: center; /* keep cards scale and centered even with few results */
+}
+
+.camera-col {
+  display: block;
+  width: 280px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.loading-container p {
+  margin-top: 20px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.error-alert {
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  width: 100%;
+}
+
+.no-results h3 {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.camerascart-icon-container {
+  position: fixed;
+  bottom: 7px;
+  left: 10px;
+}
+
+.camerascart-icon {
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+}
+
+.camerascart-icon-container.disabled {
+  opacity: 0.5;
+}
+
+.camerascart-icon-container.disabled .camerascart-icon {
+  pointer-events: none;
+}
+
+.camerascart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #b40a05;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .space { width: 90%; }
+}
+
